@@ -1,0 +1,49 @@
+@baseUrl = http://localhost:3333
+@authToken = {{authenticate.response.body.accessToken}}
+
+# @name create_account
+POST {{baseUrl}}/accounts
+Content-Type: application/json
+
+{
+    "name": "Test Controller",
+    "email": "test@creago.org.br",
+    "password": "123456"
+}
+
+###
+
+# @name authenticate
+POST {{baseUrl}}/sessions
+Content-Type: application/json
+
+{
+    "email": "wesleygomes@creago.org.br",
+    "password": "123456"
+}
+
+###
+
+# @name create_question
+POST {{baseUrl}}/questions
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "title": "Titulo da perguta",
+    "content": "Conteúdo da pergunta"
+}
+
+###
+
+# @name fetch_recent_questions
+GET {{baseUrl}}/questions
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+
+# @name get_question_by_slug
+GET {{baseUrl}}/questions/question-01
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
