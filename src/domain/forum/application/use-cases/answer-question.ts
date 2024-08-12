@@ -17,7 +17,6 @@ type AnswerQuestionUseCaseResponse = Either<null, { answer: Answer }>
 @Injectable()
 export class AnswerQuestionUseCase {
   constructor(private answerRepository: AnswersRepository) {}
-
   async execute({
     authorId,
     questionId,
